@@ -85,7 +85,7 @@ class HttpInteractor(Generic[TSubRequest, TResponse, TState], ABC):
         After that, the `actions` are dispatched to the `store`.
         """
         response = await self._http_client.send(self.request, auth=self.auth)
-        if response:
+        if response is not None:
             await self.side_effects(response)
 
             for action in self.actions(response):

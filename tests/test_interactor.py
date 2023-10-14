@@ -123,3 +123,14 @@ class TestExecute:
 
         sut.mock_actions.assert_called_once_with(response)
         sut.store.dispatch.assert_has_calls(expected_calls)
+
+    async def test_when_response_none__does_not_perform_side_effects(
+        self, create_sut, create_http_client, response
+    ):
+        http_client = create_http_client()
+        http_client.send = AsyncMock(return_value=None)
+        sut = create_sut(http_client=http_client)
+
+        await sut.execute()
+
+        sut.mock_side_effects.assert_not_called()

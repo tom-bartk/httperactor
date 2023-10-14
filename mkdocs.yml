@@ -4,7 +4,7 @@ repo_url: https://github.com/tom-bartk/httperactor
 theme:
   name: material
   icon:
-    logo: material/web-box
+    logo: material/chat-box
 
   palette:
     scheme: gruvbox
